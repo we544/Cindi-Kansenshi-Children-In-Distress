@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs | CINDI Kansenshi</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/programs.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+        <span>CINDI<span class="logo-sub"> Kansenshi</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html" class="active">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="donate.html" class="nav-donate-btn">Donate</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Programs</span></div>
+      <h1>Our Programs</h1>
+      <p>Four integrated pillars designed to address the whole child — mind, body, health, and future.</p>
+    </div>
+  </div>
+
+  <!-- PROGRAM NAV TABS -->
+  <div class="prog-tabs-bar">
+    <div class="container">
+      <div class="prog-tabs">
+        <a href="#education"   class="prog-tab active"><i class="fas fa-book-open"></i> Education</a>
+        <a href="#nutrition"   class="prog-tab"><i class="fas fa-utensils"></i> Nutrition</a>
+        <a href="#health"      class="prog-tab"><i class="fas fa-heart-pulse"></i> Health</a>
+        <a href="#empowerment" class="prog-tab"><i class="fas fa-seedling"></i> Empowerment</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <section class="section prog-section" id="education">
+    <div class="container prog-layout">
+      <div class="prog-img-col">
+        <img src="images/program-education.svg" alt="Education program" loading="lazy">
+        <div class="prog-badge prog-badge-green">
+          <span class="prog-badge-num">680</span>
+          <span>Children in school</span>
+        </div>
+      </div>
+      <div class="prog-text-col">
+        <div class="prog-label" style="background:#E8F5E9;color:#2E7D32">
+          <i class="fas fa-book-open"></i> Education Support
+        </div>
+        <h2>No Child Left Out of Class</h2>
+        <p>We believe education is the single greatest equaliser. CINDI covers school fees, uniforms, textbooks, and stationery for every enrolled child — removing the barriers that keep vulnerable learners at home.</p>
+        <p>Our after-school tutoring centre opens Monday to Friday from 2 pm – 5 pm, staffed by qualified teachers and trained volunteers. Children who are behind grade level receive targeted one-on-one catch-up sessions.</p>
+        <div class="prog-features">
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> School fees & uniforms paid</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Textbooks & stationery provided</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> After-school tutoring centre</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Grade-level catch-up programme</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Secondary school transition support</div>
+        </div>
+        <a href="donate.html" class="btn btn-green" style="margin-top:1.5rem">Fund a Child's Education</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- NUTRITION -->
+  <section class="section prog-section" id="nutrition" style="background:var(--cream)">
+    <div class="container prog-layout prog-layout-reverse">
+      <div class="prog-text-col">
+        <div class="prog-label" style="background:#FFF3E0;color:#E65100">
+          <i class="fas fa-utensils"></i> Nutrition &amp; Feeding
+        </div>
+        <h2>A Full Stomach Changes Everything</h2>
+        <p>Hunger is the most immediate barrier to learning. Our on-site feeding programme provides a hot, balanced meal every school day to children who would otherwise attend on an empty stomach.</p>
+        <p>Beyond daily meals, our home food packages — distributed monthly — support the most vulnerable households, ensuring caregivers can feed children through the school-break periods too.</p>
+        <div class="prog-features">
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Hot meal 5 days a week</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Monthly household food packages</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Community vegetable garden</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Nutrition education for caregivers</div>
+        </div>
+        <a href="donate.html" class="btn btn-orange" style="margin-top:1.5rem">Feed a Child for a Month — $25</a>
+      </div>
+      <div class="prog-img-col">
+        <img src="images/program-nutrition.svg" alt="Nutrition program" loading="lazy">
+        <div class="prog-badge prog-badge-orange">
+          <span class="prog-badge-num">1,200</span>
+          <span>Meals served weekly</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- HEALTH -->
+  <section class="section prog-section" id="health">
+    <div class="container prog-layout">
+      <div class="prog-img-col">
+        <img src="images/program-health.svg" alt="Health program" loading="lazy">
+        <div class="prog-badge prog-badge-blue">
+          <span class="prog-badge-num">300+</span>
+          <span>Clinic visits last year</span>
+        </div>
+      </div>
+      <div class="prog-text-col">
+        <div class="prog-label" style="background:#E3F2FD;color:#1565C0">
+          <i class="fas fa-heart-pulse"></i> Health &amp; Wellness
+        </div>
+        <h2>Healthy Children, Brighter Futures</h2>
+        <p>Our mobile health clinic — run in partnership with Ndola Teaching Hospital — visits the compound quarterly to provide free check-ups, immunisations, deworming, and basic dental screening.</p>
+        <p>We also run HIV/AIDS awareness sessions and connect caregivers to antiretroviral treatment support. Our trained social workers provide ongoing psychosocial support to children who have experienced trauma or loss.</p>
+        <div class="prog-features">
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Quarterly mobile health clinics</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> HIV counselling &amp; ART linkage</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Psychosocial support (social workers)</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Immunisation &amp; deworming campaigns</div>
+        </div>
+        <a href="contact.html" class="btn btn-outline-dark" style="margin-top:1.5rem">Partner on Health</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- EMPOWERMENT -->
+  <section class="section prog-section" id="empowerment" style="background:var(--cream)">
+    <div class="container prog-layout prog-layout-reverse">
+      <div class="prog-text-col">
+        <div class="prog-label" style="background:#F3E5F5;color:#6A1B9A">
+          <i class="fas fa-seedling"></i> Community Empowerment
+        </div>
+        <h2>Sustainable Change Starts with Caregivers</h2>
+        <p>Children thrive when their households are stable. Our caregiver empowerment programme trains guardians — many of them elderly grandmothers — in income-generating skills such as soap-making, tailoring, and small-business management.</p>
+        <p>We also facilitate Village Savings and Loan Associations (VSLAs), giving caregivers access to credit and a financial safety net for the first time.</p>
+        <div class="prog-features">
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Soap-making &amp; tailoring training</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Small-business mentorship</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Village Savings &amp; Loan Associations</div>
+          <div class="prog-feature"><i class="fas fa-check-circle"></i> Caregiver wellness support groups</div>
+        </div>
+        <a href="donate.html" class="btn btn-green" style="margin-top:1.5rem">Empower a Household</a>
+      </div>
+      <div class="prog-img-col">
+        <img src="images/program-empowerment.svg" alt="Empowerment program" loading="lazy">
+        <div class="prog-badge prog-badge-purple">
+          <span class="prog-badge-num">450</span>
+          <span>Families empowered</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="prog-cta-band">
+    <div class="container" style="text-align:center">
+      <h2>Ready to Make a Difference?</h2>
+      <p>Your support directly funds one — or all — of these programmes.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+        <a href="donate.html" class="btn btn-orange">Donate Now</a>
+        <a href="contact.html" class="btn btn-outline-white">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;font-size:1.4rem">
+          <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+          CINDI<span class="logo-sub"> Kansenshi</span>
+        </div>
+        <p>Restoring hope and dignity to children in distress in Ndola, Zambia.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Our Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html#volunteer">Volunteer</a></li>
+        <li><a href="contact.html#partner">Partner</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <p>Kansenshi, Ndola, Zambia</p>
+        <p>+260 123 456 789</p>
+        <p>info@cindikansenshi.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CINDI Kansenshi Children in Distress. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="#">Annual Report</a></p>
+    </div>
+  </footer>
+
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+    // Sticky program tab highlighting
+    const tabs = document.querySelectorAll('.prog-tab');
+    const sections = ['education','nutrition','health','empowerment'].map(id => document.getElementById(id));
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        if (sec && window.scrollY >= sec.offsetTop - 140) current = sec.id;
+      });
+      tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + current));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | CINDI Kansenshi</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+        <span>CINDI<span class="logo-sub"> Kansenshi</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate-btn">Donate</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Contact</span></div>
+      <h1>Get in Touch</h1>
+      <p>Whether you want to volunteer, partner, or simply say hello — we'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT MAIN -->
+  <section class="section contact-section">
+    <div class="container contact-layout">
+
+      <!-- INFO SIDE -->
+      <div class="contact-info-col">
+        <h2>Talk to Us</h2>
+        <p>Our team is based in Ndola and typically responds within 2 working days. For urgent inquiries, please call directly.</p>
+
+        <div class="contact-detail-list">
+          <div class="contact-detail">
+            <div class="cd-icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+              <strong>Address</strong>
+              <p>Kansenshi Compound, Ndola, Copperbelt Province, Zambia</p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <strong>Phone</strong>
+              <p><a href="tel:+260123456789">+260 123 456 789</a></p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:info@cindikansenshi.org">info@cindikansenshi.org</a></p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <strong>Office Hours</strong>
+              <p>Monday – Friday, 08:00 – 17:00 CAT</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <!-- MAP placeholder -->
+        <div class="map-placeholder">
+          <i class="fas fa-map-location-dot"></i>
+          <p>Kansenshi, Ndola</p>
+          <span>Copperbelt Province, Zambia</span>
+        </div>
+      </div>
+
+      <!-- FORM SIDE -->
+      <div class="contact-form-col">
+        <!-- Tab switcher -->
+        <div class="form-tabs">
+          <button class="form-tab active" data-form="general">General Inquiry</button>
+          <button class="form-tab" data-form="volunteer" id="volunteerTab">Volunteer</button>
+          <button class="form-tab" data-form="partner" id="partnerTab">Partner With Us</button>
+        </div>
+
+        <!-- General -->
+        <form id="generalForm" class="contact-form active-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="gName">Full Name</label>
+              <input type="text" id="gName" placeholder="Jane Banda" required>
+            </div>
+            <div class="form-group">
+              <label for="gEmail">Email Address</label>
+              <input type="email" id="gEmail" placeholder="jane@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="gSubject">Subject</label>
+            <input type="text" id="gSubject" placeholder="How can we help?">
+          </div>
+          <div class="form-group">
+            <label for="gMessage">Message</label>
+            <textarea id="gMessage" rows="6" placeholder="Your message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-green btn-full">Send Message <i class="fas fa-paper-plane"></i></button>
+        </form>
+
+        <!-- Volunteer -->
+        <form id="volunteerForm" class="contact-form" style="display:none" id="volunteer">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vName">Full Name</label>
+              <input type="text" id="vName" placeholder="Jane Banda" required>
+            </div>
+            <div class="form-group">
+              <label for="vEmail">Email</label>
+              <input type="email" id="vEmail" placeholder="jane@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vCountry">Country</label>
+              <input type="text" id="vCountry" placeholder="Zambia">
+            </div>
+            <div class="form-group">
+              <label for="vRole">Area of Interest</label>
+              <select id="vRole">
+                <option value="">Select one...</option>
+                <option>Teaching / Tutoring</option>
+                <option>Health &amp; Medical</option>
+                <option>Fundraising</option>
+                <option>Admin / Communications</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vAvail">Availability</label>
+            <select id="vAvail">
+              <option value="">Select...</option>
+              <option>In-person, Ndola</option>
+              <option>Remote support</option>
+              <option>Both</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="vMsg">Tell us about yourself</label>
+            <textarea id="vMsg" rows="5" placeholder="Skills, experience, motivation..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-green btn-full">Submit Application <i class="fas fa-arrow-right"></i></button>
+        </form>
+
+        <!-- Partner -->
+        <form id="partnerForm" class="contact-form" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pOrg">Organisation Name</label>
+              <input type="text" id="pOrg" placeholder="ABC Corporation" required>
+            </div>
+            <div class="form-group">
+              <label for="pContact">Contact Person</label>
+              <input type="text" id="pContact" placeholder="Jane Banda" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pEmail">Work Email</label>
+            <input type="email" id="pEmail" placeholder="jane@abccorp.com" required>
+          </div>
+          <div class="form-group">
+            <label for="pType">Partnership Type</label>
+            <select id="pType">
+              <option value="">Select...</option>
+              <option>Corporate Sponsorship</option>
+              <option>In-kind Donations</option>
+              <option>School / Academic Partnership</option>
+              <option>NGO / Government Collaboration</option>
+              <option>Media / Awareness</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pMsg">Partnership Proposal</label>
+            <textarea id="pMsg" rows="5" placeholder="Describe your proposed partnership..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-green btn-full">Send Proposal <i class="fas fa-arrow-right"></i></button>
+        </form>
+
+        <div class="form-success" id="formSuccess" style="display:none">
+          <i class="fas fa-circle-check"></i>
+          <h3>Thank You!</h3>
+          <p>Your message has been received. We'll get back to you within 2 working days.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VOLUNTEER & PARTNER ANCHORS -->
+  <div id="volunteer" style="scroll-margin-top:100px"></div>
+  <div id="partner"   style="scroll-margin-top:100px"></div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;font-size:1.4rem">
+          <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+          CINDI<span class="logo-sub"> Kansenshi</span>
+        </div>
+        <p>Restoring hope and dignity to children in distress in Ndola, Zambia.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Our Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html#volunteer">Volunteer</a></li>
+        <li><a href="contact.html#partner">Partner</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <p>Kansenshi, Ndola, Zambia</p><p>+260 123 456 789</p><p>info@cindikansenshi.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CINDI Kansenshi Children in Distress. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="#">Annual Report</a></p>
+    </div>
+  </footer>
+
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+    // Form tab switcher
+    const formTabs  = document.querySelectorAll('.form-tab');
+    const formPanes = { general: document.getElementById('generalForm'), volunteer: document.getElementById('volunteerForm'), partner: document.getElementById('partnerForm') };
+    formTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        formTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        Object.values(formPanes).forEach(f => f.style.display = 'none');
+        formPanes[tab.dataset.form].style.display = 'block';
+      });
+    });
+
+    // Auto-switch to volunteer/partner via hash
+    if (window.location.hash === '#volunteer') {
+      document.querySelector('[data-form="volunteer"]').click();
+    } else if (window.location.hash === '#partner') {
+      document.querySelector('[data-form="partner"]').click();
+    }
+
+    // Form submission handler
+    function handleSubmit(formEl) {
+      formEl.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        const fields = Object.fromEntries(
+          Array.from(this.querySelectorAll('input, select, textarea'))
+            .filter(field => field.id)
+            .map(field => [field.id, field.value.trim()])
+        );
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: this.id.replace('Form', ''), fields })
+        }).then(async response => {
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || 'Your message could not be sent.');
+          this.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'flex';
+        }).catch(error => {
+          if (window.CindiToast) window.CindiToast(error.message, 'error');
+          btn.textContent = originalText;
+          btn.disabled = false;
+        });
+      });
+    }
+    Object.values(formPanes).forEach(handleSubmit);
+  </script>
+</body>
+</html>

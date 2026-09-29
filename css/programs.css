@@ -1,0 +1,129 @@
+/* ============================================================
+   CINDI Kansenshi — Programs Page Styles
+   ============================================================ */
+
+/* ── TAB BAR ───────────────────────────────────── */
+.prog-tabs-bar {
+  position: sticky;
+  top: 68px;
+  z-index: 900;
+  background: white;
+  border-bottom: 1px solid #e8e8e4;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.prog-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.prog-tabs::-webkit-scrollbar { display: none; }
+.prog-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.8rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.prog-tab:hover { color: var(--green); }
+.prog-tab.active { color: var(--green-dark); border-bottom-color: var(--green); }
+
+/* ── PROGRAM SECTIONS ──────────────────────────── */
+.prog-section { scroll-margin-top: 120px; }
+.prog-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.prog-layout-reverse { direction: rtl; }
+.prog-layout-reverse > * { direction: ltr; }
+
+.prog-img-col { position: relative; }
+.prog-img-col img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.prog-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  border-radius: 14px;
+  padding: 1rem 1.4rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  min-width: 130px;
+}
+.prog-badge-green  { background: var(--green); color: white; }
+.prog-badge-orange { background: var(--amber); color: white; }
+.prog-badge-blue   { background: #1565C0; color: white; }
+.prog-badge-purple { background: #6A1B9A; color: white; }
+
+.prog-badge-num {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.prog-badge span:last-child { font-size: 0.78rem; opacity: 0.88; }
+
+.prog-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+
+.prog-text-col h2 { margin-bottom: 1.2rem; }
+.prog-text-col p  { color: var(--gray-600); margin-bottom: 1rem; font-size: 0.97rem; }
+
+.prog-features { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.prog-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--gray-800);
+}
+.prog-feature i { color: var(--green); font-size: 0.9rem; flex-shrink: 0; }
+
+/* ── DIVIDER ───────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ddd, transparent);
+  margin: 0;
+}
+
+/* ── CTA BAND ──────────────────────────────────── */
+.prog-cta-band {
+  background: linear-gradient(135deg, var(--green-dark), #14401A);
+  color: white;
+  padding: 80px 0;
+}
+.prog-cta-band h2 { color: white; margin-bottom: 1rem; }
+.prog-cta-band p  { color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 900px) {
+  .prog-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .prog-layout-reverse { direction: ltr; }
+  .prog-img-col img { height: 280px; }
+  .prog-badge { bottom: -14px; right: 10px; }
+}

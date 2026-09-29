@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts | CINDI Kansenshi</title>
+  <meta name="description" content="Read stories, updates, and reflections from CINDI Kansenshi — a community organisation serving children in Ndola, Zambia.">
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/posts.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900;400i&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+        <span>CINDI<span class="logo-sub"> Kansenshi</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html" class="active">Posts</a></li>
+        <li><a href="donate.html" class="nav-donate-btn">Donate</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="page-hero posts-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Posts</span></div>
+      <h1>Stories &amp; Reflections</h1>
+      <p>Long reads, field notes, and heartfelt stories from the heart of Kansenshi.</p>
+    </div>
+  </div>
+
+  <!-- SEARCH + FILTER -->
+  <div class="posts-toolbar">
+    <div class="container posts-toolbar-inner">
+      <div class="posts-search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="search" id="postSearch" placeholder="Search posts…" aria-label="Search posts">
+      </div>
+      <div class="posts-filter-tags">
+        <button class="p-filter active" data-cat="all">All</button>
+        <button class="p-filter" data-cat="story">Stories</button>
+        <button class="p-filter" data-cat="field-note">Field Notes</button>
+        <button class="p-filter" data-cat="reflection">Reflections</button>
+        <button class="p-filter" data-cat="impact">Impact</button>
+        <button class="p-filter" data-cat="community">Community</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED POST -->
+  <section class="featured-post-section">
+    <div class="container">
+      <div class="featured-post" id="featuredPost" data-cat="">
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTS GRID -->
+  <section class="posts-grid-section">
+    <div class="container">
+      <div class="posts-grid" id="postsGrid">
+      </div>
+
+      <div class="posts-no-results" id="postsNoResults" style="display:none">
+        <i class="fas fa-search"></i>
+        <p>No posts match your search.</p>
+        <button class="btn btn-outline-dark" id="clearSearch">Clear Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- POST READING MODAL -->
+  <div class="post-modal" id="postModal" role="dialog" aria-modal="true">
+    <div class="pm-backdrop" id="pmBackdrop"></div>
+    <div class="pm-panel" id="pmPanel">
+      <button class="pm-close" id="pmClose" aria-label="Close post"><i class="fas fa-times"></i></button>
+      <div class="pm-inner">
+        <div id="pmMeta" class="pm-meta"></div>
+        <h1 id="pmTitle" class="pm-title"></h1>
+        <div id="pmBody" class="pm-body"></div>
+        <div class="pm-footer">
+          <a href="donate.html" class="btn btn-orange"><i class="fas fa-heart"></i> Support Our Work</a>
+          <a href="contact.html" class="btn btn-outline-dark">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;font-size:1.4rem">
+          <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+          CINDI<span class="logo-sub"> Kansenshi</span>
+        </div>
+        <p>Restoring hope and dignity to children in distress in Ndola, Zambia.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html#volunteer">Volunteer</a></li>
+        <li><a href="contact.html#partner">Partner</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <p>Kansenshi, Ndola, Zambia</p><p>+260 123 456 789</p><p>info@cindikansenshi.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CINDI Kansenshi Children in Distress. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="#">Annual Report</a></p>
+    </div>
+  </footer>
+
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/posts.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+backend/data/
+backend/test-uploads/
+__pycache__/
+*.py[cod]

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Admin | CINDI Kansenshi</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <!-- Content-Security-Policy is best set as a real HTTP response header by your web server/host;
+       this meta tag is a fallback for static hosting so the browser still enforces it. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; media-src 'self' blob: https:; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <meta name="referrer" content="no-referrer">
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="admin-body">
+
+  <!-- ============================================================
+       FIRST-RUN SETUP SCREEN (shown only when no admin account exists)
+       ============================================================ -->
+  <div class="auth-wrap" id="setupScreen" style="display:none">
+    <div class="auth-card">
+      <div class="auth-icon"><i class="fas fa-user-shield"></i></div>
+      <h1>Create Admin Account</h1>
+      <p class="auth-sub">Create the first server admin account to manage site content.</p>
+
+      <div class="auth-error" id="setupError"><i class="fas fa-circle-exclamation"></i><span></span></div>
+
+      <form id="setupForm" autocomplete="off">
+        <div class="field">
+          <label for="setupUsername">Username</label>
+          <input type="text" id="setupUsername" name="username" autocomplete="username" required minlength="3" maxlength="40">
+        </div>
+        <div class="field">
+          <label for="setupToken">Server setup key (if required)</label>
+          <input type="password" id="setupToken" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="setupPassword">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="setupPassword" name="new-password" autocomplete="new-password" required minlength="10">
+            <button type="button" class="password-toggle" data-toggle="setupPassword"><i class="fas fa-eye"></i></button>
+          </div>
+          <div class="strength-meter"><div class="strength-meter-fill" id="strengthFill"></div></div>
+          <div class="strength-label" id="strengthLabel">Minimum 10 characters</div>
+        </div>
+        <div class="field">
+          <label for="setupPasswordConfirm">Confirm Password</label>
+          <input type="password" id="setupPasswordConfirm" name="confirm-password" autocomplete="new-password" required minlength="10">
+        </div>
+        <button type="submit" class="btn btn-green btn-full">Create Account &amp; Continue</button>
+      </form>
+
+      <div class="security-note"><i class="fas fa-shield-halved"></i>Your password is hashed by the server. Choose a unique password and keep it private.</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       LOGIN SCREEN
+       ============================================================ -->
+  <div class="auth-wrap" id="loginScreen" style="display:none">
+    <div class="auth-card">
+      <div class="auth-icon"><i class="fas fa-lock"></i></div>
+      <h1>Staff Login</h1>
+      <p class="auth-sub">CINDI Kansenshi content dashboard</p>
+
+      <div class="auth-error" id="loginError"><i class="fas fa-circle-exclamation"></i><span></span></div>
+
+      <form id="loginForm" autocomplete="on">
+        <div class="field">
+          <label for="loginUsername">Username</label>
+          <input type="text" id="loginUsername" name="username" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+            <button type="button" class="password-toggle" data-toggle="loginPassword"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-green btn-full" id="loginSubmitBtn">Sign In</button>
+      </form>
+
+      <p class="auth-footnote"><a href="#" id="forgotLink">Forgot password? Contact the site administrator</a></p>
+
+      <div class="security-note"><i class="fas fa-shield-halved"></i>Sign-in is verified by the CINDI server. Use a private device and sign out when finished.</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       DASHBOARD SHELL
+       ============================================================ -->
+  <div class="admin-shell" id="adminShell">
+    <aside class="admin-sidebar">
+      <div class="admin-brand"><span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span> CINDI Admin</div>
+      <ul class="admin-nav">
+        <li><button data-panel="overview" class="active"><i class="fas fa-gauge-high"></i> Overview</button></li>
+        <li><button data-panel="stats"><i class="fas fa-chart-simple"></i> Site Stats</button></li>
+        <li><button data-panel="news"><i class="fas fa-newspaper"></i> News Posts</button></li>
+        <li><button data-panel="blogposts"><i class="fas fa-pen-nib"></i> Posts</button></li>
+        <li><button data-panel="gallery"><i class="fas fa-photo-film"></i> Photos &amp; Videos</button></li>
+        <li><button data-panel="documents"><i class="fas fa-file-lines"></i> Documents</button></li>
+        <li><button data-panel="inbox"><i class="fas fa-inbox"></i> Contact Inbox</button></li>
+        <li><button data-panel="security"><i class="fas fa-shield-halved"></i> Security</button></li>
+      </ul>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-chip"><span class="dot"></span><span id="sidebarUsername">admin</span></div>
+        <button class="logout-btn" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Log out</button>
+        <a href="index.html" class="back-to-site">&larr; Back to public site</a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="session-bar"><i class="fas fa-circle-dot"></i> <span id="sessionInfo">Session active</span></div>
+
+      <!-- OVERVIEW -->
+      <section class="admin-panel active" data-panel="overview">
+        <div class="admin-header">
+          <div><h2>Overview</h2><p>A quick snapshot of what's currently live on the public site.</p></div>
+        </div>
+        <div class="banner"><i class="fas fa-circle-info"></i><div><strong>How this works</strong>Published content and uploaded files are saved on the CINDI server and shared with every visitor. Keep private or sensitive personal information out of public posts.</div></div>
+        <div class="stat-cards" id="overviewCards"></div>
+        <div class="card">
+          <h3>Recent Activity</h3>
+          <div class="audit-log" id="overviewAudit"></div>
+        </div>
+        <div class="card">
+          <h3>Quick Links</h3>
+          <div class="quick-links-grid">
+            <a href="index.html" target="_blank" class="quick-link"><i class="fas fa-house"></i> Homepage</a>
+            <a href="news.html" target="_blank" class="quick-link"><i class="fas fa-newspaper"></i> News</a>
+            <a href="posts.html" target="_blank" class="quick-link"><i class="fas fa-pen-nib"></i> Posts</a>
+            <a href="gallery.html" target="_blank" class="quick-link"><i class="fas fa-photo-film"></i> Gallery</a>
+            <a href="documents.html" target="_blank" class="quick-link"><i class="fas fa-file-lines"></i> Documents</a>
+            <a href="contact.html" target="_blank" class="quick-link"><i class="fas fa-envelope"></i> Contact</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SITE STATS -->
+      <section class="admin-panel" data-panel="stats">
+        <div class="admin-header">
+          <div><h2>Homepage Stats</h2><p>These numbers feed the animated counters at the top of the homepage.</p></div>
+        </div>
+        <div class="card">
+          <form id="statsForm" class="form-grid">
+            <div class="field"><label for="statChildren">Children Supported</label><input type="number" id="statChildren" min="0" required></div>
+            <div class="field"><label for="statCompletion">School Completion (%)</label><input type="number" id="statCompletion" min="0" max="100" required></div>
+            <div class="field"><label for="statFamilies">Families Empowered</label><input type="number" id="statFamilies" min="0" required></div>
+            <div class="field"><label for="statYears">Years of Service</label><input type="number" id="statYears" min="0" required></div>
+            <div class="field field-full" style="display:flex;gap:0.6rem">
+              <button type="submit" class="btn btn-green">Save &amp; Publish</button>
+              <button type="button" class="btn btn-ghost" id="resetStatsBtn">Reset to Defaults</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section class="admin-panel" data-panel="news">
+        <div class="admin-header">
+          <div><h2>News Posts</h2><p>Posts you add here appear at the top of the News page automatically.</p></div>
+        </div>
+        <div class="card">
+          <h3 id="newsFormTitle">Add a News Post</h3>
+          <form id="newsForm" class="form-grid">
+            <input type="hidden" id="newsId">
+            <div class="field field-full"><label for="newsTitle">Headline</label><input type="text" id="newsTitle" maxlength="120" required></div>
+            <div class="field">
+              <label for="newsCategory">Category</label>
+              <select id="newsCategory">
+                <option value="education">Education</option>
+                <option value="nutrition">Nutrition</option>
+                <option value="health">Health</option>
+                <option value="empowerment">Empowerment</option>
+                <option value="community">Community</option>
+              </select>
+            </div>
+            <div class="field"><label for="newsDate">Date label</label><input type="text" id="newsDate" placeholder="e.g. July 2026" maxlength="30"></div>
+            <div class="field field-full"><label for="newsImage">Image URL</label><input type="text" id="newsImage" placeholder="images/news-clinic.svg or https://..." maxlength="500"><p class="field-hint">Use a path from the images/ folder, or a full https:// image URL.</p></div>
+            <div class="field field-full"><label for="newsExcerpt">Summary</label><textarea id="newsExcerpt" rows="3" maxlength="400" required></textarea></div>
+            <div class="field field-full" style="display:flex;gap:0.6rem">
+              <button type="submit" class="btn btn-green">Save Post</button>
+              <button type="button" class="btn btn-ghost" id="newsCancelEdit" style="display:none">Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.6rem">
+            <h3 style="margin:0">All News Articles</h3>
+            <button class="btn btn-ghost btn-sm" id="resetNewsBtn">Restore Original Content</button>
+          </div>
+          <p class="field-hint" style="margin-bottom:1rem">This includes the site's original articles — every row here can be edited or deleted, not just ones you've added.</p>
+          <div id="newsTableWrap"></div>
+        </div>
+      </section>
+
+      <!-- BLOG POSTS -->
+      <section class="admin-panel" data-panel="blogposts">
+        <div class="admin-header">
+          <div><h2>Posts</h2><p>Long-form stories and field notes on the Posts page. The most recent post is shown as the featured story.</p></div>
+        </div>
+
+        <div class="banner">
+          <i class="fas fa-circle-info"></i>
+          <div>
+            <strong>Body text is kept plain, on purpose</strong>
+            Write the body as ordinary paragraphs, separated by a blank line. No HTML is needed (or accepted) — this keeps the Posts form safe even if someone else ever gets into this account.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 id="postFormTitle">Add a Post</h3>
+          <form id="postForm" class="form-grid">
+            <input type="hidden" id="postId">
+            <input type="hidden" id="postCoverBlobId">
+
+            <div class="field field-full"><label for="postTitle">Title</label><input type="text" id="postTitle" maxlength="140" required></div>
+            <div class="field"><label for="postAuthor">Author &amp; role</label><input type="text" id="postAuthor" placeholder="e.g. Grace Banda, Executive Director" maxlength="100" required></div>
+            <div class="field">
+              <label for="postCategory">Category</label>
+              <select id="postCategory">
+                <option value="story">Story</option>
+                <option value="field-note">Field Note</option>
+                <option value="reflection">Reflection</option>
+                <option value="impact">Impact</option>
+                <option value="community">Community</option>
+              </select>
+            </div>
+            <div class="field"><label for="postDate">Date label</label><input type="text" id="postDate" placeholder="e.g. July 25, 2026" maxlength="30" required></div>
+            <div class="field"><label for="postRead">Read time</label><input type="text" id="postRead" placeholder="e.g. 4 min read" maxlength="20"></div>
+
+            <div class="field field-full">
+              <label>Cover image source</label>
+              <div class="toggle-group" id="postSourceToggle">
+                <button type="button" class="toggle-btn active" data-value="upload"><i class="fas fa-upload"></i> Upload from device</button>
+                <button type="button" class="toggle-btn" data-value="url"><i class="fas fa-link"></i> Paste a link</button>
+              </div>
+            </div>
+            <div class="field field-full upload-dropzone" id="postUploadField">
+              <label for="postCoverFile">Choose a cover image</label>
+              <input type="file" id="postCoverFile" accept="image/*">
+              <div class="upload-preview" id="postUploadPreview" style="display:none"></div>
+            </div>
+            <div class="field field-full" id="postUrlField" style="display:none">
+              <label for="postImage">Cover image URL</label>
+              <input type="text" id="postImage" placeholder="images/hero.svg or https://...">
+            </div>
+
+            <div class="field field-full"><label for="postExcerpt">Excerpt (shown on the cards)</label><textarea id="postExcerpt" rows="2" maxlength="240" required></textarea></div>
+            <div class="field field-full">
+              <label>Full post</label>
+              <div class="editor-toolbar" id="postEditorToolbar">
+                <button type="button" class="editor-tool" data-cmd="bold" title="Bold"><b>B</b></button>
+                <button type="button" class="editor-tool" data-cmd="italic" title="Italic"><i>I</i></button>
+                <button type="button" class="editor-tool" data-cmd="underline" title="Underline"><u>U</u></button>
+                <button type="button" class="editor-tool" data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+                <span class="editor-tool-sep"></span>
+                <button type="button" class="editor-tool" data-cmd="insertUnorderedList" title="Bullet list">&bull; List</button>
+                <button type="button" class="editor-tool" data-cmd="insertOrderedList" title="Numbered list">1. List</button>
+                <span class="editor-tool-sep"></span>
+                <button type="button" class="editor-tool" data-cmd="formatBlock" data-val="h3" title="Heading">H3</button>
+                <button type="button" class="editor-tool" data-cmd="formatBlock" data-val="blockquote" title="Quote">&ldquo;&rdquo;</button>
+                <button type="button" class="editor-tool" data-cmd="formatBlock" data-val="p" title="Paragraph">¶</button>
+                <span class="editor-tool-sep"></span>
+                <button type="button" class="editor-tool" data-cmd="removeFormat" title="Clear formatting">Clear</button>
+              </div>
+              <div id="postBodyEditor" class="editor-area" contenteditable="true" data-placeholder="Write the full story here…"></div>
+              <p class="field-hint">Formatting is limited to safe text styling — no embedded scripts or media are ever allowed here.</p>
+            </div>
+
+            <div class="field field-full" style="display:flex;gap:0.6rem">
+              <button type="submit" class="btn btn-green">Save Post</button>
+              <button type="button" class="btn btn-ghost" id="postCancelEdit" style="display:none">Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.6rem">
+            <h3 style="margin:0">All Posts</h3>
+            <button class="btn btn-ghost btn-sm" id="resetPostsBtn">Restore Original Content</button>
+          </div>
+          <p class="field-hint" style="margin-bottom:1rem">The post at the top of this list is shown as the featured story on the Posts page.</p>
+          <div id="postsTableWrap"></div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="admin-panel" data-panel="gallery">
+        <div class="admin-header">
+          <div><h2>Photos &amp; Videos</h2><p>Items added here appear at the top of the Gallery page.</p></div>
+        </div>
+
+        <div class="banner">
+          <i class="fas fa-circle-info"></i>
+          <div>
+            <strong>Server uploads</strong>
+            Uploaded photos and videos are stored on the server and appear to all visitors. Use HTTPS links or YouTube/Vimeo for externally hosted media.
+          </div>
+        </div>
+
+        <div class="card" id="storageUsageCard" style="display:none">
+          <h3>Session &amp; Preview Storage</h3>
+          <div class="strength-meter" style="height:8px"><div class="strength-meter-fill" id="storageFill" style="background:var(--green)"></div></div>
+          <p class="field-hint" id="storageLabel"></p>
+        </div>
+
+        <div class="card">
+          <h3 id="galleryFormTitle">Add a Photo or Video</h3>
+          <form id="galleryForm" class="form-grid">
+            <input type="hidden" id="galleryId">
+            <input type="hidden" id="galleryBlobId">
+
+            <div class="field field-full">
+              <label>Type</label>
+              <div class="toggle-group" id="galleryTypeToggle">
+                <button type="button" class="toggle-btn active" data-value="photo"><i class="fas fa-image"></i> Photo</button>
+                <button type="button" class="toggle-btn" data-value="video"><i class="fas fa-video"></i> Video</button>
+              </div>
+            </div>
+
+            <div class="field field-full">
+              <label>Source</label>
+              <div class="toggle-group" id="gallerySourceToggle">
+                <button type="button" class="toggle-btn active" data-value="upload"><i class="fas fa-upload"></i> Upload from device</button>
+                <button type="button" class="toggle-btn" data-value="url"><i class="fas fa-link"></i> Paste a link</button>
+              </div>
+            </div>
+
+            <div class="field field-full upload-dropzone" id="galleryUploadField">
+              <label for="galleryFile" id="galleryFileLabel">Choose a photo</label>
+              <input type="file" id="galleryFile" accept="image/*">
+              <p class="field-hint" id="galleryFileHint">JPG, PNG, GIF, or WEBP — up to 8 MB.</p>
+              <div class="upload-preview" id="galleryUploadPreview" style="display:none"></div>
+            </div>
+
+            <div class="field field-full" id="galleryUrlField" style="display:none">
+              <label for="galleryUrl" id="galleryUrlLabel">Image URL</label>
+              <input type="text" id="galleryUrl" placeholder="images/hero.svg or https://...">
+              <p class="field-hint" id="galleryUrlHint">A path from the images/ folder, or a full https:// image URL.</p>
+            </div>
+
+            <div class="field field-full"><label for="galleryCaption">Caption</label><input type="text" id="galleryCaption" maxlength="120" required></div>
+            <div class="field">
+              <label for="galleryCategory">Category</label>
+              <select id="galleryCategory">
+                <option value="education">Education</option>
+                <option value="nutrition">Nutrition</option>
+                <option value="health">Health</option>
+                <option value="empowerment">Empowerment</option>
+                <option value="events">Events</option>
+                <option value="centre">Centre</option>
+              </select>
+            </div>
+            <div class="field"><label for="galleryDate">Date label</label><input type="text" id="galleryDate" placeholder="e.g. July 2026" maxlength="30"></div>
+            <div class="field field-full" style="display:flex;gap:0.6rem">
+              <button type="submit" class="btn btn-green">Save</button>
+              <button type="button" class="btn btn-ghost" id="galleryCancelEdit" style="display:none">Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.6rem">
+            <h3 style="margin:0">All Photos &amp; Videos</h3>
+            <button class="btn btn-ghost btn-sm" id="resetGalleryBtn">Restore Original Content</button>
+          </div>
+          <p class="field-hint" style="margin-bottom:1rem">This includes the site's original photos — every row here can be edited or deleted, not just ones you've added.</p>
+          <div class="admin-media-grid" id="adminGalleryGrid"></div>
+          <div id="galleryTableWrap"></div>
+        </div>
+      </section>
+
+      <!-- DOCUMENTS -->
+      <section class="admin-panel" data-panel="documents">
+        <div class="admin-header">
+          <div><h2>Documents</h2><p>Reports, forms, and policies published to the public Documents page.</p></div>
+        </div>
+
+        <div class="banner">
+          <i class="fas fa-circle-info"></i>
+          <div>
+            <strong>Server uploads</strong>
+            Uploaded documents are stored on the server and available to site visitors. Only publish documents intended to be public.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 id="docFormTitle">Add a Document</h3>
+          <form id="documentForm" class="form-grid">
+            <input type="hidden" id="docId">
+            <input type="hidden" id="docBlobId">
+
+            <div class="field field-full">
+              <label>Source</label>
+              <div class="toggle-group" id="docSourceToggle">
+                <button type="button" class="toggle-btn active" data-value="upload"><i class="fas fa-upload"></i> Upload from device</button>
+                <button type="button" class="toggle-btn" data-value="url"><i class="fas fa-link"></i> Paste a link</button>
+              </div>
+            </div>
+
+            <div class="field field-full upload-dropzone" id="docUploadField">
+              <label for="docFile">Choose a file</label>
+              <input type="file" id="docFile" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+              <p class="field-hint">PDF, Word, Excel, or PowerPoint — up to 15 MB.</p>
+            </div>
+            <div class="field field-full" id="docUrlField" style="display:none">
+              <label for="docUrl">Document URL</label>
+              <input type="text" id="docUrl" placeholder="https://...">
+            </div>
+
+            <div class="field field-full"><label for="docTitle">Title</label><input type="text" id="docTitle" maxlength="120" required></div>
+            <div class="field">
+              <label for="docCategory">Category</label>
+              <select id="docCategory">
+                <option value="report">Annual Report</option>
+                <option value="policy">Policy</option>
+                <option value="form">Form</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field"><label for="docDate">Date label</label><input type="text" id="docDate" placeholder="e.g. 2026" maxlength="30"></div>
+            <div class="field field-full"><label for="docDescription">Short description</label><textarea id="docDescription" rows="2" maxlength="200"></textarea></div>
+            <div class="field field-full" style="display:flex;gap:0.6rem">
+              <button type="submit" class="btn btn-green">Save Document</button>
+              <button type="button" class="btn btn-ghost" id="docCancelEdit" style="display:none">Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Published by You</h3>
+          <div id="documentsTableWrap"></div>
+        </div>
+      </section>
+
+      <!-- CONTACT INBOX -->
+      <section class="admin-panel" data-panel="inbox">
+        <div class="admin-header">
+          <div><h2>Contact Inbox</h2><p>General inquiries, volunteer applications, and partnership proposals.</p></div>
+          <button type="button" class="btn btn-ghost btn-sm" id="refreshMessagesBtn"><i class="fas fa-rotate"></i> Refresh</button>
+        </div>
+        <div class="card"><div id="messagesList"></div></div>
+      </section>
+
+      <!-- SECURITY -->
+      <section class="admin-panel" data-panel="security">
+        <div class="admin-header">
+          <div><h2>Security</h2><p>Account, session, and data controls.</p></div>
+        </div>
+
+        <div class="banner">
+          <i class="fas fa-triangle-exclamation"></i>
+          <div>
+            <strong>Server-backed access</strong>
+            Passwords are hashed on the server and admin APIs require a server-verified session cookie. Use HTTPS in production, set a stable <code>CINDI_SECRET_KEY</code>, restrict access to the server and its data directory, and keep regular backups. Do not store sensitive case, donor, or financial records in this public-content dashboard.
+            <br><br>
+            Uploaded media is stored in the server's data directory and served to site visitors. Back up the database and uploads directory together.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Browser Preview Storage</h3>
+          <div class="strength-meter" style="height:8px"><div class="strength-meter-fill" id="storageFillSecurity" style="background:var(--green)"></div></div>
+          <p class="field-hint" id="storageLabelSecurity"></p>
+        </div>
+
+        <div class="card">
+          <h3>Change Password</h3>
+          <form id="passwordForm" class="form-grid">
+            <div class="field field-full"><label for="curPassword">Current Password</label><input type="password" id="curPassword" autocomplete="current-password" required></div>
+            <div class="field"><label for="newPassword">New Password</label><input type="password" id="newPassword" autocomplete="new-password" minlength="10" required></div>
+            <div class="field"><label for="newPasswordConfirm">Confirm New Password</label><input type="password" id="newPasswordConfirm" autocomplete="new-password" minlength="10" required></div>
+            <div class="field field-full"><button type="submit" class="btn btn-green">Update Password</button></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Session</h3>
+          <p style="font-size:0.88rem;color:var(--gray-600);margin-bottom:1rem">You'll be automatically signed out after 15 minutes of inactivity, or 2 hours regardless of activity — whichever comes first.</p>
+          <button class="btn btn-ghost btn-sm" id="logoutAllBtn"><i class="fas fa-right-from-bracket"></i> End session now</button>
+        </div>
+
+        <div class="card">
+          <h3>Activity Log</h3>
+          <div class="audit-log" id="fullAudit"></div>
+        </div>
+
+        <div class="card">
+          <h3>Backup &amp; Restore</h3>
+          <p style="font-size:0.88rem;color:var(--gray-600);margin-bottom:1rem">Export your news, gallery, and stats as a JSON file, or restore from a previous backup.</p>
+          <button class="btn btn-outline-dark btn-sm" id="exportBtn"><i class="fas fa-download"></i> Export backup</button>
+          <label class="btn btn-outline-dark btn-sm file-import"><i class="fas fa-upload"></i> Import backup<input type="file" id="importFile" accept="application/json" style="display:none"></label>
+        </div>
+
+        <div class="card danger-zone">
+          <h3>Danger Zone</h3>
+          <p style="font-size:0.88rem;color:#7a1f1f;margin-bottom:1rem">This only removes the local demo account used when the site is opened without its Python backend. Server admin accounts must be reset by the server operator.</p>
+          <button class="btn btn-danger btn-sm" id="resetAccountBtn"><i class="fas fa-user-slash"></i> Remove local demo account</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/shared.js"></script>
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

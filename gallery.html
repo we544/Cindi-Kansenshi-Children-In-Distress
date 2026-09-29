@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | CINDI Kansenshi</title>
+  <meta name="description" content="Photo gallery showing the work of CINDI Kansenshi — education, nutrition, health and community empowerment in Ndola, Zambia.">
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+        <span>CINDI<span class="logo-sub"> Kansenshi</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="donate.html" class="nav-donate-btn">Donate</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="page-hero gallery-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Gallery</span></div>
+      <h1>Photo Gallery</h1>
+      <p>A window into daily life at CINDI Kansenshi — the smiles, the classrooms, the meals, and the milestones.</p>
+    </div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="gallery-filter-bar">
+    <div class="container">
+      <div class="gallery-filter-tags">
+        <button class="g-filter active" data-cat="all"><i class="fas fa-th"></i> All Photos</button>
+        <button class="g-filter" data-cat="education"><i class="fas fa-book-open"></i> Education</button>
+        <button class="g-filter" data-cat="nutrition"><i class="fas fa-utensils"></i> Nutrition</button>
+        <button class="g-filter" data-cat="health"><i class="fas fa-heart-pulse"></i> Health</button>
+        <button class="g-filter" data-cat="empowerment"><i class="fas fa-seedling"></i> Empowerment</button>
+        <button class="g-filter" data-cat="events"><i class="fas fa-star"></i> Events</button>
+        <button class="g-filter" data-cat="centre"><i class="fas fa-building"></i> Our Centre</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-section">
+    <div class="container">
+      <div class="gallery-grid" id="galleryGrid">
+      </div>
+
+      <div class="gallery-no-results" id="galleryNoResults" style="display:none">
+        <i class="fas fa-images"></i>
+        <p>No photos in that category yet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBMIT YOUR PHOTO CTA -->
+  <div class="gallery-cta-band">
+    <div class="container" style="text-align:center">
+      <h2>Share Your Visit Photos</h2>
+      <p>Visited CINDI Kansenshi? We'd love to feature your photos. Tag us on social media or send them directly.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+        <a href="https://www.facebook.com/cindikansenshi/" target="_blank" class="btn btn-outline-white"><i class="fab fa-facebook-f"></i> Tag us on Facebook</a>
+        <a href="contact.html" class="btn btn-orange">Send Photos by Email</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+    <button class="lb-close" id="lbClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    <button class="lb-prev"  id="lbPrev"  aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <button class="lb-next"  id="lbNext"  aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    <div class="lb-inner">
+      <img src="" alt="" id="lbImg" class="lb-img">
+      <video id="lbVideo" class="lb-video" controls playsinline style="display:none"></video>
+      <iframe id="lbEmbed" class="lb-embed" style="display:none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="lb-info">
+        <p id="lbTitle" class="lb-title"></p>
+        <span id="lbDate" class="lb-date"></span>
+      </div>
+    </div>
+    <div class="lb-backdrop" id="lbBackdrop"></div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;font-size:1.4rem">
+          <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+          CINDI<span class="logo-sub"> Kansenshi</span>
+        </div>
+        <p>Restoring hope and dignity to children in distress in Ndola, Zambia.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html#volunteer">Volunteer</a></li>
+        <li><a href="contact.html#partner">Partner</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <p>Kansenshi, Ndola, Zambia</p><p>+260 123 456 789</p><p>info@cindikansenshi.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CINDI Kansenshi Children in Distress. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="#">Annual Report</a></p>
+    </div>
+  </footer>
+
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>

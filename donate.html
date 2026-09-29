@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate | CINDI Kansenshi</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/donate.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+        <span>CINDI<span class="logo-sub"> Kansenshi</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="donate.html" class="nav-donate-btn active">Donate</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- DONATE HERO -->
+  <div class="donate-page-hero">
+    <div class="container">
+      <div class="breadcrumb" style="justify-content:center"><a href="index.html">Home</a> <span>/</span> <span>Donate</span></div>
+      <h1>Give a Child a Future</h1>
+      <p>Your donation — however large or small — goes directly to feeding, educating, and caring for children in Kansenshi, Ndola.</p>
+      <div class="donate-trust-badges">
+        <span><i class="fas fa-shield-halved"></i> Secure Payment</span>
+        <span><i class="fas fa-receipt"></i> Receipt Provided</span>
+        <span><i class="fas fa-eye"></i> Fully Transparent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT YOUR MONEY DOES -->
+  <div class="impact-amounts-bar">
+    <div class="container">
+      <div class="impact-amounts">
+        <div class="impact-amount-item">
+          <strong>$10</strong>
+          <span>Provides textbooks for one child</span>
+        </div>
+        <div class="impact-amount-item">
+          <strong>$25</strong>
+          <span>Feeds a child for one month</span>
+        </div>
+        <div class="impact-amount-item">
+          <strong>$50</strong>
+          <span>Covers a full term's school fees</span>
+        </div>
+        <div class="impact-amount-item">
+          <strong>$100</strong>
+          <span>Pays for health clinic visit &amp; medicines</span>
+        </div>
+        <div class="impact-amount-item">
+          <strong>$250</strong>
+          <span>Funds a caregiver's skills training</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DONATE FORM -->
+  <section class="donate-main-section">
+    <div class="container donate-layout">
+
+      <!-- FORM -->
+      <div class="donate-form-wrap" id="donateFormWrap">
+        <div class="donate-toggle">
+          <button class="donate-type-btn active" data-type="once">Give Once</button>
+          <button class="donate-type-btn" data-type="monthly">Give Monthly</button>
+        </div>
+
+        <div class="amount-picker">
+          <button class="amount-btn" data-amount="10">$10</button>
+          <button class="amount-btn active" data-amount="25">$25</button>
+          <button class="amount-btn" data-amount="50">$50</button>
+          <button class="amount-btn" data-amount="100">$100</button>
+          <button class="amount-btn" data-amount="250">$250</button>
+          <div class="custom-amount-wrap">
+            <span>$</span>
+            <input type="number" id="customAmount" placeholder="Other" min="1">
+          </div>
+        </div>
+
+        <div class="selected-impact" id="selectedImpact">
+          <i class="fas fa-utensils"></i>
+          <span id="impactText">$25 feeds a child for one month</span>
+        </div>
+
+        <form id="donateForm" class="donor-form">
+          <div class="form-row-d">
+            <div class="form-group">
+              <label for="dFirst">First Name</label>
+              <input type="text" id="dFirst" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label for="dLast">Last Name</label>
+              <input type="text" id="dLast" placeholder="Banda" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dEmail">Email Address</label>
+            <input type="email" id="dEmail" placeholder="jane@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Card Details</label>
+            <div class="card-mock-field">
+              <i class="fas fa-credit-card"></i>
+              <span>Card number</span>
+              <span class="card-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+              </span>
+            </div>
+          </div>
+          <div class="form-row-d">
+            <div class="form-group">
+              <div class="card-mock-field"><span>MM / YY</span></div>
+            </div>
+            <div class="form-group">
+              <div class="card-mock-field"><span>CVC</span></div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-orange btn-full donate-submit-btn" id="donateSubmitBtn">
+            <i class="fas fa-heart"></i>
+            <span id="donateBtnText">Donate $25 Now</span>
+          </button>
+          <p class="donate-disclaimer"><i class="fas fa-lock"></i> Your payment is encrypted and secure. This is a demonstration website — no real payment will be processed.</p>
+        </form>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="donate-success" id="donateSuccess" style="display:none">
+        <div class="success-animation">
+          <div class="success-circle">
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+        <h2>Thank You for Your Generosity!</h2>
+        <p>Your donation of <strong id="successAmount">$25</strong> will make a direct difference to the children of CINDI Kansenshi.</p>
+        <p class="success-note">A receipt has been sent to your email address. (Demo — no real transaction occurred.)</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+          <a href="index.html" class="btn btn-green">Back to Home</a>
+          <a href="programs.html" class="btn btn-outline-dark">See Our Programs</a>
+        </div>
+      </div>
+
+      <!-- SIDE INFO -->
+      <div class="donate-side">
+        <div class="donate-why-card">
+          <h3>Why Give to CINDI?</h3>
+          <ul class="why-list">
+            <li><i class="fas fa-check-circle"></i> 92%+ of funds reach programmes directly</li>
+            <li><i class="fas fa-check-circle"></i> Annual reports available to all donors</li>
+            <li><i class="fas fa-check-circle"></i> Community-led and locally accountable</li>
+            <li><i class="fas fa-check-circle"></i> 12 years of proven impact in Ndola</li>
+            <li><i class="fas fa-check-circle"></i> Registered CBO, Zambia</li>
+          </ul>
+        </div>
+
+        <div class="donate-alt-methods">
+          <h3>Other Ways to Give</h3>
+          <div class="alt-method">
+            <div class="alt-icon" style="background:#fff3e0"><i class="fas fa-mobile-alt" style="color:#E65100"></i></div>
+            <div>
+              <strong>Mobile Money</strong>
+              <p>MTN MoMo: <strong>0977 123 456</strong></p>
+            </div>
+          </div>
+          <div class="alt-method">
+            <div class="alt-icon" style="background:#e8f5e9"><i class="fas fa-building-columns" style="color:#2E7D32"></i></div>
+            <div>
+              <strong>Bank Transfer</strong>
+              <p>Account: <strong>1234567890</strong><br>Bank: Zanaco Ndola Branch</p>
+            </div>
+          </div>
+          <div class="alt-method">
+            <div class="alt-icon" style="background:#e3f2fd"><i class="fab fa-paypal" style="color:#1565C0"></i></div>
+            <div>
+              <strong>PayPal</strong>
+              <p>donate@cindikansenshi.org</p>
+            </div>
+          </div>
+        </div>
+
+        <blockquote class="donate-quote">
+          <p>"I gave $25 last year not knowing if it would matter. CINDI sent me a photo of the child it fed. That photo is on my fridge."</p>
+          <cite>— Sarah T., monthly donor, UK</cite>
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;font-size:1.4rem">
+          <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+          CINDI<span class="logo-sub"> Kansenshi</span>
+        </div>
+        <p>Restoring hope and dignity to children in distress in Ndola, Zambia.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Our Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html#volunteer">Volunteer</a></li>
+        <li><a href="contact.html#partner">Partner</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <p>Kansenshi, Ndola, Zambia</p><p>+260 123 456 789</p><p>info@cindikansenshi.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CINDI Kansenshi Children in Distress. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="#">Annual Report</a></p>
+    </div>
+  </footer>
+
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+    const impactMap = {
+      10:  { icon:'fas fa-book', text:'$10 provides textbooks for one child' },
+      25:  { icon:'fas fa-utensils', text:'$25 feeds a child for one month' },
+      50:  { icon:'fas fa-graduation-cap', text:'$50 covers a full term\'s school fees' },
+      100: { icon:'fas fa-heart-pulse', text:'$100 pays for a health clinic visit & medicines' },
+      250: { icon:'fas fa-seedling', text:'$250 funds a caregiver\'s skills training' },
+    };
+
+    let selectedAmount = 25;
+    let donationType = 'once';
+
+    function updateUI() {
+      const info = impactMap[selectedAmount];
+      const btn  = document.getElementById('donateSubmitBtn');
+      const txt  = document.getElementById('donateBtnText');
+      const imp  = document.getElementById('selectedImpact');
+      const itxt = document.getElementById('impactText');
+      if (info) {
+        imp.style.display = 'flex';
+        imp.querySelector('i').className = info.icon;
+        itxt.textContent = info.text;
+      } else {
+        imp.style.display = 'none';
+      }
+      const label = donationType === 'monthly' ? 'monthly' : 'Now';
+      txt.textContent = `Donate $${selectedAmount} ${label}`;
+    }
+
+    // Amount buttons
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('customAmount').value = '';
+        selectedAmount = parseInt(btn.dataset.amount);
+        updateUI();
+      });
+    });
+
+    // Custom amount
+    document.getElementById('customAmount').addEventListener('input', function() {
+      document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+      selectedAmount = parseInt(this.value) || 0;
+      updateUI();
+    });
+
+    // Donate type toggle
+    document.querySelectorAll('.donate-type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.donate-type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        donationType = btn.dataset.type;
+        updateUI();
+      });
+    });
+
+    // Form submit
+    document.getElementById('donateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('donateSubmitBtn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('donateFormWrap').style.display = 'none';
+        document.getElementById('donateSuccess').style.display = 'block';
+        document.getElementById('successAmount').textContent = '$' + selectedAmount;
+      }, 1800);
+    });
+
+    updateUI();
+  </script>
+</body>
+</html>

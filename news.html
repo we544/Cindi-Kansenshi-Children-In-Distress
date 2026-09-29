@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News &amp; Updates | CINDI Kansenshi</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/news.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+        <span>CINDI<span class="logo-sub"> Kansenshi</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="news.html" class="active">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="donate.html" class="nav-donate-btn">Donate</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>News &amp; Updates</span></div>
+      <h1>News &amp; Updates</h1>
+      <p>Stories, milestones, and updates from the field in Kansenshi, Ndola.</p>
+    </div>
+  </div>
+
+  <!-- FILTER TAGS -->
+  <div class="news-filter-bar">
+    <div class="container">
+      <div class="filter-tags">
+        <button class="filter-tag active" data-filter="all">All</button>
+        <button class="filter-tag" data-filter="education">Education</button>
+        <button class="filter-tag" data-filter="nutrition">Nutrition</button>
+        <button class="filter-tag" data-filter="health">Health</button>
+        <button class="filter-tag" data-filter="empowerment">Empowerment</button>
+        <button class="filter-tag" data-filter="community">Community</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED ARTICLE -->
+  <section class="section featured-article-section">
+    <div class="container">
+      <div class="featured-article" id="featuredArticle" data-category="">
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES GRID -->
+  <section class="section" style="background:var(--cream);padding-top:20px">
+    <div class="container">
+      <div class="articles-grid" id="articlesGrid">
+      </div>
+
+      <div class="no-results" id="noResults" style="display:none;text-align:center;padding:3rem 0;">
+        <i class="fas fa-search" style="font-size:2rem;color:var(--gray-300);margin-bottom:1rem;display:block"></i>
+        <p style="color:var(--gray-600)">No articles found in that category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-band">
+    <div class="container newsletter-layout">
+      <div>
+        <h3>Stay Updated</h3>
+        <p>Get field updates, impact reports, and stories delivered to your inbox.</p>
+      </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit" class="btn btn-orange">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;font-size:1.4rem">
+          <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+          CINDI<span class="logo-sub"> Kansenshi</span>
+        </div>
+        <p>Restoring hope and dignity to children in distress in Ndola, Zambia.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Our Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html#volunteer">Volunteer</a></li>
+        <li><a href="contact.html#partner">Partner</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <p>Kansenshi, Ndola, Zambia</p><p>+260 123 456 789</p><p>info@cindikansenshi.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CINDI Kansenshi Children in Distress. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="#">Annual Report</a></p>
+    </div>
+  </footer>
+
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+    (async function () {
+    await window.CindiContentReady;
+    // Filter articles by category tag
+    const filterBtns = document.querySelectorAll('.filter-tag');
+    const articles   = document.querySelectorAll('.article-card');
+    const featured   = document.querySelector('.featured-article');
+    const noResults  = document.getElementById('noResults');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        let visible = 0;
+        articles.forEach(a => {
+          const show = f === 'all' || a.dataset.category === f;
+          a.style.display = show ? 'flex' : 'none';
+          if (show) visible++;
+        });
+        const showFeatured = f === 'all' || (featured && featured.dataset.category === f);
+        if (featured) featured.closest('section').style.display = showFeatured ? '' : 'none';
+        noResults.style.display = (visible === 0 && !showFeatured) ? 'block' : 'none';
+      });
+    });
+
+    // Newsletter
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      btn.textContent = '✓ Subscribed!';
+      btn.style.background = '#2E7D32';
+      btn.disabled = true;
+      if (window.CindiToast) window.CindiToast("You're subscribed to CINDI Kansenshi updates.", 'success');
+      setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; btn.disabled = false; this.reset(); }, 3000);
+    });
+    })();
+  </script>
+</body>
+</html>

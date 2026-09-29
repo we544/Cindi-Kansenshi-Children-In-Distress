@@ -1,0 +1,138 @@
+/* ============================================================
+   CINDI Kansenshi — Contact Page Styles
+   ============================================================ */
+
+/* ── CONTACT LAYOUT ────────────────────────────── */
+.contact-section { background: var(--cream); }
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: flex-start;
+}
+
+/* ── INFO COL ──────────────────────────────────── */
+.contact-info-col h2 { margin-bottom: 1rem; }
+.contact-info-col > p { color: var(--gray-600); margin-bottom: 2rem; }
+
+.contact-detail-list { display: flex; flex-direction: column; gap: 1.4rem; margin-bottom: 2rem; }
+.contact-detail {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.cd-icon {
+  width: 42px; height: 42px;
+  background: var(--green);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.contact-detail strong { display: block; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green-dark); margin-bottom: 0.2rem; }
+.contact-detail p, .contact-detail a { font-size: 0.95rem; color: var(--gray-600); }
+.contact-detail a:hover { color: var(--green); }
+
+.contact-socials { display: flex; gap: 0.8rem; margin-bottom: 2rem; }
+.contact-socials a {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--green-dark);
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-size: 0.95rem;
+  transition: all var(--transition);
+}
+.contact-socials a:hover { background: var(--amber); transform: translateY(-2px); }
+
+.map-placeholder {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  text-align: center;
+  color: white;
+}
+.map-placeholder i { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; color: #FFD54F; }
+.map-placeholder p  { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+.map-placeholder span { font-size: 0.85rem; opacity: 0.75; }
+
+/* ── FORM COL ──────────────────────────────────── */
+.contact-form-col {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.form-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+.form-tab {
+  flex: 1;
+  padding: 1rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--gray-600);
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition);
+}
+.form-tab:hover { color: var(--green); }
+.form-tab.active { color: var(--green-dark); border-bottom-color: var(--green); background: #f9f9f7; }
+
+.contact-form { padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-size: 0.82rem; font-weight: 600; color: var(--gray-800); }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 11px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--gray-800);
+  background: white;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(46,125,50,0.12);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select { cursor: pointer; }
+
+.form-success {
+  padding: 3rem 2rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+.form-success i { font-size: 3rem; color: var(--green); }
+.form-success h3 { color: var(--green-dark); }
+.form-success p  { color: var(--gray-600); }
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .form-tabs { flex-direction: column; }
+  .form-tab { text-align: left; border-bottom: none; border-left: 3px solid transparent; }
+  .form-tab.active { border-left-color: var(--green); border-bottom: none; }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documents | CINDI Kansenshi</title>
+  <meta name="description" content="Annual reports, policies, and downloadable resources from CINDI Kansenshi.">
+  <link rel="stylesheet" href="css/shared.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.3rem; }
+    .doc-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-sm); display: flex; gap: 1rem; transition: all var(--transition); }
+    .doc-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .doc-icon { width: 46px; height: 46px; border-radius: 10px; background: var(--gray-100); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .doc-body h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .doc-body p { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 0.6rem; line-height: 1.5; }
+    .doc-meta { font-size: 0.76rem; color: var(--gray-600); display: flex; gap: 10px; align-items: center; margin-bottom: 0.6rem; }
+    .doc-download { font-size: 0.85rem; font-weight: 600; color: var(--green); display: inline-flex; align-items: center; gap: 6px; }
+    .doc-download:hover { color: var(--green-dark); }
+    .doc-empty { text-align: center; padding: 4rem 1rem; color: var(--gray-600); }
+    .doc-empty i { font-size: 2.2rem; color: var(--gray-300); display: block; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+        <span>CINDI<span class="logo-sub"> Kansenshi</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="visit.html">Visit Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="documents.html" class="active">Documents</a></li>
+        <li><a href="donate.html" class="nav-donate-btn">Donate</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Documents</span></div>
+      <h1>Documents &amp; Resources</h1>
+      <p>Annual reports, policies, and other resources shared by CINDI Kansenshi.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="doc-grid" id="documentsGrid"></div>
+      <div class="doc-empty" id="documentsEmpty" style="display:none">
+        <i class="fas fa-folder-open"></i>
+        No documents have been published yet. Check back soon.
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;font-size:1.4rem">
+          <span class="logo-mark"><i class="fas fa-hand-holding-heart"></i></span>
+          CINDI<span class="logo-sub"> Kansenshi</span>
+        </div>
+        <p>Restoring hope and dignity to children in distress in Ndola, Zambia.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/cindikansenshi/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="impact.html">Our Impact</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="visit.html">Visit Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="posts.html">Posts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="contact.html#volunteer">Volunteer</a></li>
+          <li><a href="contact.html#partner">Partner</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Kansenshi, Ndola, Zambia</p>
+        <p>+260 123 456 789</p>
+        <p>info@cindikansenshi.org</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CINDI Kansenshi Children in Distress. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &middot; <a href="documents.html">Annual Report</a></p>
+    </div>
+  </footer>
+
+  <script src="js/seed-data.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/media-store.js"></script>
+  <script src="js/shared.js"></script>
+</body>
+</html>
