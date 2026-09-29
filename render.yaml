@@ -3,7 +3,7 @@ services:
     name: cindi-kansenshi-website
     runtime: python
     region: singapore
-    plan: 0.5c-512mb
+    plan: free
     branch: main
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn backend.app:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120
@@ -13,14 +13,10 @@ services:
       - key: CINDI_ENV
         value: production
       - key: CINDI_DATA_DIR
-        value: /var/data
+        value: /tmp/cindi-data
       - key: CINDI_COOKIE_SECURE
         value: "1"
       - key: CINDI_SECRET_KEY
         generateValue: true
       - key: CINDI_SETUP_TOKEN
         sync: false
-    disk:
-      name: cindi-content
-      mountPath: /var/data
-      sizeGB: 1

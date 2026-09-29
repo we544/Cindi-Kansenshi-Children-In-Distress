@@ -48,7 +48,7 @@ The development server binds to localhost and is for local development only.
 
 ### Deploy To Render
 
-The root `render.yaml` defines the web service, Gunicorn start command, HTTPS-only cookies, generated session secret, and a persistent disk for SQLite and uploaded media. In Render, create a Blueprint from this GitHub repository and enter a one-time `CINDI_SETUP_TOKEN` when prompted. The service uses a paid compute plan because Render persistent disks require one; review the current price in Render before confirming deployment. After the first admin account is created, remove `CINDI_SETUP_TOKEN` from the service environment. The app permits startup without it once an admin exists.
+The root `render.yaml` defines a free web service, Gunicorn start command, HTTPS-only cookies, generated session secret, and a writable data directory. In Render, create a Blueprint from this GitHub repository and enter a one-time `CINDI_SETUP_TOKEN` when prompted. The free service uses ephemeral storage: SQLite content, contact submissions, and uploaded media may be lost when Render restarts or redeploys it. For durable storage, upgrade to a paid service and attach a persistent disk. After the first admin account is created, remove `CINDI_SETUP_TOKEN` from the service environment. The app permits startup without it once an admin exists.
 
 Never commit runtime data or setup secrets. Back up the database and uploads together.
 
