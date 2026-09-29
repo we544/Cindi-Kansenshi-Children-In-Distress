@@ -1,7 +1,9 @@
 import io
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from backend.app import create_app
 
@@ -90,6 +92,30 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(client.post("/api/admin/setup", json=credentials).status_code, 403)
         credentials["setupToken"] = "one-time-key"
         self.assertEqual(client.post("/api/admin/setup", json=credentials).status_code, 201)
+
+    def test_production_requires_setup_key_only_before_first_admin(self):
+        root = Path(self.temp_dir.name) / "production"
+        config = {
+            "TESTING": True,
+            "SECRET_KEY": "test-session-secret",
+            "DATABASE": str(root / "test.sqlite3"),
+            "UPLOAD_FOLDER": str(root / "uploads"),
+            "SETUP_TOKEN": None,
+        }
+        with patch.dict(os.environ, {"CINDI_ENV": "production"}):
+            with self.assertRaises(RuntimeError):
+                create_app(config)
+            config["SETUP_TOKEN"] = "first-admin-key"
+            app = create_app(config)
+            response = app.test_client().post("/api/admin/setup", json={
+                "username": "staff",
+                "password": "safe-passphrase-42",
+                "setupToken": "first-admin-key",
+            })
+            self.assertEqual(response.status_code, 201)
+            config["SETUP_TOKEN"] = None
+            app_without_setup_key = create_app(config)
+            self.assertTrue(app_without_setup_key.test_client().get("/api/admin/status").json["configured"])
 
 
 if __name__ == "__main__":

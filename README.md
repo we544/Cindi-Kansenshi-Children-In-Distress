@@ -44,7 +44,13 @@ Open `http://127.0.0.1:5000`. On the first visit to `admin.html`, create the ser
 
 Run the backend tests with `python -m unittest backend.test_app`.
 
-The development server binds to localhost and is for local development only. For deployment, use a production WSGI server behind HTTPS, set a long random `CINDI_SECRET_KEY`, set `CINDI_COOKIE_SECURE=1`, and back up the database and uploads together. Set `CINDI_DATA_DIR` to a persistent, access-restricted location when the hosting platform has ephemeral application storage. Before starting with `CINDI_ENV=production`, set a one-time `CINDI_SETUP_TOKEN` and enter it on the first-admin form; remove the token after the account is created. Never commit runtime data or setup secrets.
+The development server binds to localhost and is for local development only.
+
+### Deploy To Render
+
+The root `render.yaml` defines the web service, Gunicorn start command, HTTPS-only cookies, generated session secret, and a persistent disk for SQLite and uploaded media. In Render, create a Blueprint from this GitHub repository and enter a one-time `CINDI_SETUP_TOKEN` when prompted. The service uses a paid compute plan because Render persistent disks require one; review the current price in Render before confirming deployment. After the first admin account is created, remove `CINDI_SETUP_TOKEN` from the service environment. The app permits startup without it once an admin exists.
+
+Never commit runtime data or setup secrets. Back up the database and uploads together.
 
 Opening the HTML files directly still works as a static preview, but admin edits and contact submissions will not be shared or persisted by the Python backend.
 

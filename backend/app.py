@@ -47,12 +47,17 @@ def create_app(test_config=None):
     )
     if test_config:
         app.config.update(test_config)
-    if os.environ.get("CINDI_ENV", "").lower() == "production" and not app.config["SETUP_TOKEN"]:
-        raise RuntimeError("Set CINDI_SETUP_TOKEN before starting in production mode.")
-
     Path(app.config["DATABASE"]).parent.mkdir(parents=True, exist_ok=True)
     Path(app.config["UPLOAD_FOLDER"]).mkdir(parents=True, exist_ok=True)
     _initialize_database(app)
+    if os.environ.get("CINDI_ENV", "").lower() == "production" and not app.config["SETUP_TOKEN"]:
+        connection = sqlite3.connect(app.config["DATABASE"])
+        try:
+            admin_exists = connection.execute("SELECT 1 FROM admins LIMIT 1").fetchone() is not None
+        finally:
+            connection.close()
+        if not admin_exists:
+            raise RuntimeError("Set CINDI_SETUP_TOKEN before the first production startup.")
     app.teardown_appcontext(close_db)
 
     @app.before_request
