@@ -111,6 +111,10 @@
   try {
     const saved = JSON.parse(localStorage.getItem('cindi_site_stats') || 'null');
     if (saved) {
+      if (saved.years === 12) {
+        saved.years = 32;
+        localStorage.setItem('cindi_site_stats', JSON.stringify(saved));
+      }
       document.querySelectorAll('[data-stat-key]').forEach(el => {
         const key = el.dataset.statKey;
         if (saved[key] !== undefined && !isNaN(parseFloat(saved[key]))) {

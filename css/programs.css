@@ -104,6 +104,34 @@
 }
 .prog-feature i { color: var(--green); font-size: 0.9rem; flex-shrink: 0; }
 
+/* ── EDUCATION PATHWAYS ────────────────────────── */
+.education-pathways { margin-top: 5rem; }
+.pathways-intro {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  color: var(--gray-600);
+}
+.student-roster {
+  margin-top: 2rem;
+  border: 1px solid #e8e8e4;
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+.student-roster summary {
+  padding: 1.2rem 1.5rem;
+  color: var(--green-dark);
+  font-weight: 700;
+  cursor: pointer;
+}
+.student-roster summary::marker { color: var(--amber); }
+.roster-scroll { overflow-x: auto; padding: 0 1rem 1rem; }
+.student-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 0.86rem; }
+.student-table th,
+.student-table td { padding: 0.75rem; border-bottom: 1px solid #e8e8e4; text-align: left; vertical-align: top; }
+.student-table th { color: var(--green-dark); background: var(--cream); font-weight: 700; }
+.student-table tbody tr:last-child td { border-bottom: 0; }
+
 /* ── DIVIDER ───────────────────────────────────── */
 .section-divider {
   height: 1px;

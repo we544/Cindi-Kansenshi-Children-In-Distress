@@ -23,7 +23,7 @@
   const ABSOLUTE_LIMIT_MS = 2 * 60 * 60 * 1000; // 2 hour hard cap
   const MAX_ATTEMPTS = 5;
 
-  const DEFAULT_STATS = { children: 1200, completion: 85, families: 450, years: 12 };
+  const DEFAULT_STATS = { children: 400, completion: 63, families: 36, years: 32 };
   const CONTENT_KEYS = { [LS.stats]: 'stats', [LS.news]: 'news', [LS.gallery]: 'gallery', [LS.posts]: 'posts', [LS.documents]: 'documents' };
   let backendEnabled = false;
   let backendAuthenticated = false;

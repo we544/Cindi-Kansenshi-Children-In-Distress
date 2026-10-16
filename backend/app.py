@@ -14,7 +14,7 @@ from werkzeug.utils import secure_filename
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT_DEFAULTS = {
-    "stats": {"children": 1200, "completion": 85, "families": 450, "years": 12},
+    "stats": {"children": 400, "completion": 63, "families": 36, "years": 32},
     "news": None,
     "gallery": None,
     "posts": None,
@@ -361,7 +361,10 @@ def close_db(_error=None):
 def _read_content():
     values = dict(CONTENT_DEFAULTS)
     for row in get_db().execute("SELECT key, value FROM content"):
-        values[row["key"]] = json.loads(row["value"])
+        value = json.loads(row["value"])
+        if row["key"] == "stats" and isinstance(value, dict) and value.get("years") == 12:
+            value["years"] = 32
+        values[row["key"]] = value
     return values
 
 

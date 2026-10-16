@@ -39,6 +39,16 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(invalid.status_code, 400)
         public = self.client.get("/api/content")
         self.assertEqual(public.json["news"], news)
+        self.assertEqual(public.json["stats"], {
+            "children": 400,
+            "completion": 63,
+            "families": 36,
+            "years": 32,
+        })
+
+        legacy_stats = {"children": 400, "completion": 63, "families": 36, "years": 12}
+        self.assertEqual(self.client.put("/api/admin/content/stats", json=legacy_stats).status_code, 200)
+        self.assertEqual(self.client.get("/api/content").json["stats"]["years"], 32)
 
     def test_contact_messages_are_visible_in_admin_inbox(self):
         response = self.client.post("/api/contact", json={

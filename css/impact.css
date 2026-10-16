@@ -144,6 +144,24 @@
   transition: width 1.2s ease;
 }
 
+/* ── PROGRAMME FACTS ───────────────────────────── */
+.impact-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.impact-fact {
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.impact-fact strong { display: block; margin-bottom: 0.5rem; color: var(--green-dark); font-family: 'Playfair Display', serif; font-size: 1.25rem; }
+.impact-fact p { color: var(--gray-600); font-size: 0.9rem; }
+.breakdown-section .section-header { margin-bottom: 2rem; }
+.pathways-intro { max-width: 900px; margin: 0 auto 1rem; color: var(--gray-600); }
+
 /* ── IMPACT QUOTES ─────────────────────────────── */
 .impact-quotes {
   display: grid;
@@ -181,6 +199,7 @@
 
 /* ── RESPONSIVE ────────────────────────────────── */
 @media (max-width: 900px) {
+  .impact-facts-grid { grid-template-columns: repeat(2, 1fr); }
   .big-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .big-stat:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.1); }
   .big-stat:nth-child(2) { border-right: none; }
@@ -190,6 +209,7 @@
   .impact-quote-card-featured { transform: none; }
 }
 @media (max-width: 600px) {
+  .impact-facts-grid { grid-template-columns: 1fr; }
   .timeline::before { left: 70px; }
   .timeline-item { grid-template-columns: 50px 30px 1fr; gap: 0 1rem; }
   .tl-year { font-size: 0.85rem; }
