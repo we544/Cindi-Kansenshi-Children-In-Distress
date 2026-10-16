@@ -378,7 +378,11 @@
       showLogin();
       return;
     } catch (error) {
-      backendEnabled = false;
+      // Never downgrade admin authentication to browser-only storage.
+      backendEnabled = true;
+      showLogin();
+      showError($('#loginError'), 'Cannot reach the secure admin server. Check your connection and reload this page.');
+      return;
     }
     const meta = readJSON(LS.meta, null);
     if (!meta) { showSetup(); return; }

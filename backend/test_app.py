@@ -17,6 +17,8 @@ class BackendTests(unittest.TestCase):
             "SECRET_KEY": "test-session-secret",
             "DATABASE": str(root / "test.sqlite3"),
             "UPLOAD_FOLDER": str(root / "uploads"),
+            "ADMIN_USERNAME": None,
+            "ADMIN_PASSWORD": None,
         })
         self.client = app.test_client()
         response = self.client.post("/api/admin/setup", json={"username": "staff", "password": "safe-passphrase-42"})
@@ -86,12 +88,49 @@ class BackendTests(unittest.TestCase):
             "DATABASE": str(root / "test.sqlite3"),
             "UPLOAD_FOLDER": str(root / "uploads"),
             "SETUP_TOKEN": "one-time-key",
+            "ADMIN_USERNAME": None,
+            "ADMIN_PASSWORD": None,
         })
         client = app.test_client()
         credentials = {"username": "staff", "password": "safe-passphrase-42"}
         self.assertEqual(client.post("/api/admin/setup", json=credentials).status_code, 403)
         credentials["setupToken"] = "one-time-key"
         self.assertEqual(client.post("/api/admin/setup", json=credentials).status_code, 201)
+
+    def test_environment_credentials_bootstrap_admin_only_once(self):
+        root = Path(self.temp_dir.name) / "environment-bootstrap"
+        config = {
+            "TESTING": True,
+            "SECRET_KEY": "test-session-secret",
+            "DATABASE": str(root / "test.sqlite3"),
+            "UPLOAD_FOLDER": str(root / "uploads"),
+            "SETUP_TOKEN": None,
+            "ADMIN_USERNAME": None,
+            "ADMIN_PASSWORD": None,
+            "ADMIN_USERNAME": "render-admin",
+            "ADMIN_PASSWORD": "strong-render-passphrase-82",
+        }
+        with patch.dict(os.environ, {"CINDI_ENV": "production"}):
+            app = create_app(config)
+            client = app.test_client()
+            self.assertTrue(client.get("/api/admin/status").json["configured"])
+            self.assertEqual(client.post("/api/admin/login", json={
+                "username": "render-admin",
+                "password": "strong-render-passphrase-82",
+            }).status_code, 200)
+
+            config["ADMIN_USERNAME"] = "changed-admin"
+            config["ADMIN_PASSWORD"] = "different-render-passphrase-82"
+            restarted_app = create_app(config)
+            restarted_client = restarted_app.test_client()
+            self.assertEqual(restarted_client.post("/api/admin/login", json={
+                "username": "render-admin",
+                "password": "strong-render-passphrase-82",
+            }).status_code, 200)
+            self.assertEqual(restarted_client.post("/api/admin/login", json={
+                "username": "changed-admin",
+                "password": "different-render-passphrase-82",
+            }).status_code, 401)
 
     def test_production_requires_setup_key_only_before_first_admin(self):
         root = Path(self.temp_dir.name) / "production"

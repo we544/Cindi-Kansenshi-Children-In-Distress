@@ -18,5 +18,7 @@ services:
         value: "1"
       - key: CINDI_SECRET_KEY
         generateValue: true
-      - key: CINDI_SETUP_TOKEN
+      - key: CINDI_ADMIN_USERNAME
+        sync: false
+      - key: CINDI_ADMIN_PASSWORD
         sync: false

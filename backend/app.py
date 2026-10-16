@@ -42,6 +42,8 @@ def create_app(test_config=None):
         SESSION_COOKIE_SAMESITE="Lax",
         SESSION_COOKIE_SECURE=os.environ.get("CINDI_COOKIE_SECURE", "0") == "1",
         SETUP_TOKEN=os.environ.get("CINDI_SETUP_TOKEN"),
+        ADMIN_USERNAME=os.environ.get("CINDI_ADMIN_USERNAME"),
+        ADMIN_PASSWORD=os.environ.get("CINDI_ADMIN_PASSWORD"),
         PERMANENT_SESSION_LIFETIME=60 * 60 * 2,
         MAX_CONTENT_LENGTH=UPLOAD_LIMITS["video"] + 1024 * 1024,
     )
@@ -50,6 +52,7 @@ def create_app(test_config=None):
     Path(app.config["DATABASE"]).parent.mkdir(parents=True, exist_ok=True)
     Path(app.config["UPLOAD_FOLDER"]).mkdir(parents=True, exist_ok=True)
     _initialize_database(app)
+    _bootstrap_admin(app)
     if os.environ.get("CINDI_ENV", "").lower() == "production" and not app.config["SETUP_TOKEN"]:
         connection = sqlite3.connect(app.config["DATABASE"])
         try:
@@ -57,7 +60,10 @@ def create_app(test_config=None):
         finally:
             connection.close()
         if not admin_exists:
-            raise RuntimeError("Set CINDI_SETUP_TOKEN before the first production startup.")
+            raise RuntimeError(
+                "Set CINDI_SETUP_TOKEN or both CINDI_ADMIN_USERNAME and CINDI_ADMIN_PASSWORD "
+                "before the first production startup."
+            )
     app.teardown_appcontext(close_db)
 
     @app.before_request
@@ -290,6 +296,41 @@ def _initialize_database(app):
         "CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT NOT NULL, fields TEXT NOT NULL, created_at INTEGER NOT NULL, read INTEGER NOT NULL DEFAULT 0);"
     )
     connection.close()
+
+
+def _bootstrap_admin(app):
+    connection = sqlite3.connect(app.config["DATABASE"])
+    try:
+        connection.execute("BEGIN IMMEDIATE")
+        if connection.execute("SELECT 1 FROM admins LIMIT 1").fetchone():
+            connection.rollback()
+            return
+
+        username = str(app.config["ADMIN_USERNAME"] or "").strip()
+        password = str(app.config["ADMIN_PASSWORD"] or "")
+        if not username and not password:
+            connection.rollback()
+            return
+        if not username or not password:
+            raise RuntimeError("Set both CINDI_ADMIN_USERNAME and CINDI_ADMIN_PASSWORD.")
+        if not 3 <= len(username) <= 40 or len(password) < 10:
+            raise RuntimeError(
+                "CINDI_ADMIN_USERNAME must be 3-40 characters and CINDI_ADMIN_PASSWORD "
+                "must be at least 10 characters."
+            )
+        if username.casefold() in password.casefold():
+            raise RuntimeError("CINDI_ADMIN_PASSWORD must not contain the admin username.")
+
+        connection.execute(
+            "INSERT INTO admins (username, password_hash, created_at) VALUES (?, ?, ?)",
+            (username, generate_password_hash(password), int(time.time())),
+        )
+        connection.commit()
+    except Exception:
+        connection.rollback()
+        raise
+    finally:
+        connection.close()
 
 
 def _load_secret_key(data_dir):
